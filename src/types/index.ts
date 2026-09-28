@@ -135,9 +135,13 @@ export interface TravelConnectSubmission {
   homeCity: string;
   destinationCountry: string;
   destinationCity: string;
-  targetUniversity: string;
-  departureDate: string;
-  supportNeeded: string[];
+  targetUniversity?: string;
+  travelDate?: string;
+  departureDate?: string;
+  purpose?: string;
+  supportNeeded: string | string[];
   notes?: string;
   submittedAt: string;
 }
+
+export type TravelAssistanceSubmission = TravelConnectSubmission;

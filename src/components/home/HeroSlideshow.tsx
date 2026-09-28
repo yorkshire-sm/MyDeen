@@ -61,28 +61,26 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
       {/* Decorative architectural grid lines */}
       <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:24px_24px]"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
         {/* Top Kicker - Anti-slop clean typography */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-slate-300">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold tracking-wide text-slate-300">
             <span className="text-emerald-400 font-bold">Dawateislami Youth Initiative</span>
             <span className="text-slate-500">·</span>
-            <span>University & Higher Education Department</span>
-            <span className="text-slate-500">·</span>
-            <span className="text-slate-400 font-normal">Global Youth Portal</span>
+            <span>Higher Education & Campus Department</span>
           </div>
 
           {/* Slide counter & pause control */}
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-400 ml-auto">
             <span>0{currentSlide + 1}</span>
             <span>/</span>
             <span>0{total}</span>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="p-1 rounded-md hover:bg-white/10 text-slate-300 transition-colors ml-1"
+              className="p-1.5 rounded-md hover:bg-white/10 text-slate-300 transition-colors ml-1 min-w-[36px] min-h-[36px] flex items-center justify-center"
               aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
             >
-              {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -90,57 +88,57 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
         {/* Hero Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Descriptive Hero Copy */}
-          <div className="lg:col-span-6 space-y-5">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-6">
             <div className="inline-block">
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded-md border ${accentColors[slide.imageTheme]}`}>
+              <span className={`text-xs sm:text-sm font-semibold px-3 py-1 rounded-md border ${accentColors[slide.imageTheme]}`}>
                 {slide.category}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-display leading-[1.15] text-balance">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-display leading-[1.2] text-balance">
               {slide.title}
             </h1>
 
-            <p className="text-base sm:text-lg text-emerald-300/90 font-medium">
+            <p className="text-base sm:text-lg lg:text-xl text-emerald-300/90 font-medium">
               {slide.tagline}
             </p>
 
-            <p className="text-sm text-slate-300 leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
               {slide.description}
             </p>
 
             {/* Slide Metadata Stats */}
-            <div className="flex flex-wrap items-center gap-6 py-2 text-xs text-slate-300 border-y border-white/10">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 py-3 text-xs sm:text-sm text-slate-300 border-y border-white/10">
               <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-emerald-400" />
+                <Users className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span className="font-semibold text-white">{slide.stats}</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-emerald-400" />
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>{slide.location}</span>
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="pt-2 flex flex-wrap items-center gap-3">
+            {/* CTAs with generous mobile touch targets */}
+            <div className="pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               <button
                 onClick={() => setActiveTab('university')}
-                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-2 shadow-lg shadow-emerald-950/40"
+                className="w-full sm:w-auto px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm sm:text-base font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 min-h-[48px]"
               >
-                <span>Explore University Wing</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>Explore Campus Wing</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
                 onClick={() => setActiveTab('courses')}
-                className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition-colors border border-white/15"
+                className="w-full sm:w-auto px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base font-semibold rounded-xl transition-colors border border-white/15 min-h-[48px] flex items-center justify-center"
               >
-                <span>View Free Youth Courses</span>
+                <span>Free Youth Courses</span>
               </button>
 
               <button
                 onClick={() => setActiveTab('centers')}
-                className="px-4 py-2.5 bg-transparent hover:bg-white/5 text-slate-300 hover:text-white text-xs font-medium rounded-lg transition-colors"
+                className="w-full sm:w-auto px-4 py-3 bg-transparent hover:bg-white/5 text-slate-300 hover:text-white text-sm sm:text-base font-medium rounded-xl transition-colors min-h-[48px] flex items-center justify-center"
               >
                 <span>Find Nearest Center</span>
               </button>
@@ -149,47 +147,47 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
 
           {/* Right Column: Visual Activity Feature Card with High-Fidelity Mockup Image */}
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md p-5 sm:p-6 overflow-hidden shadow-2xl space-y-4">
-              <div className="flex items-center justify-between text-xs text-slate-300 border-b border-white/10 pb-3">
+            <div className="relative rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md p-4 sm:p-6 overflow-hidden shadow-2xl space-y-4">
+              <div className="flex items-center justify-between text-xs sm:text-sm text-slate-300 border-b border-white/10 pb-3">
                 <div className="flex items-center gap-2">
                   <ImageIcon className="w-4 h-4 text-emerald-400" />
                   <span className="font-semibold text-white">Visual Activity Mockup</span>
                 </div>
-                <span className="text-emerald-400 font-mono text-[11px] bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                <span className="text-emerald-400 font-mono text-xs bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
                   {slide.category}
                 </span>
               </div>
 
-              {/* High-Fidelity Mockup Image Slot (Strictly zero women depicted) */}
+              {/* High-Fidelity Mockup Image Slot */}
               <div className="aspect-[16/10] w-full rounded-xl overflow-hidden border border-white/15 shadow-xl relative bg-slate-900">
                 <SlideMockupImage slideId={slide.id} theme={slide.imageTheme} />
               </div>
 
               {/* Mockup Caption & Location Banner */}
-              <div className="flex items-center justify-between text-[11px] text-slate-300 pt-1">
+              <div className="flex flex-wrap items-center justify-between text-xs sm:text-sm text-slate-300 pt-1 gap-2">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+                  <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>{slide.location}</span>
                 </div>
                 <span className="text-emerald-400 font-semibold">{slide.stats}</span>
               </div>
 
-              {/* Quick actions box */}
-              <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
+              {/* Quick actions box with comfortable touch targets */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                 <button
                   onClick={onOpenAmbassadorModal}
-                  className="p-2.5 rounded-lg bg-emerald-900/30 hover:bg-emerald-900/50 border border-emerald-500/30 text-left transition-colors"
+                  className="p-3 rounded-xl bg-emerald-900/30 hover:bg-emerald-900/50 border border-emerald-500/30 text-left transition-colors min-h-[52px]"
                 >
-                  <span className="block font-semibold text-emerald-300 text-[11px]">Ambassador Form</span>
-                  <span className="text-[10px] text-slate-300">Represent your campus</span>
+                  <span className="block font-semibold text-emerald-300 text-xs sm:text-sm">Ambassador Form</span>
+                  <span className="text-xs text-slate-300">Represent your campus</span>
                 </button>
 
                 <button
                   onClick={onOpenTravelModal}
-                  className="p-2.5 rounded-lg bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/30 text-left transition-colors"
+                  className="p-3 rounded-xl bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/30 text-left transition-colors min-h-[52px]"
                 >
-                  <span className="block font-semibold text-purple-300 text-[11px]">Travel Connect</span>
-                  <span className="text-[10px] text-slate-300">Overseas student buddy</span>
+                  <span className="block font-semibold text-purple-300 text-xs sm:text-sm">Travel Connect</span>
+                  <span className="text-xs text-slate-300">Overseas student buddy</span>
                 </button>
               </div>
             </div>
@@ -197,13 +195,13 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
         </div>
 
         {/* Bottom Slide Navigation Bar */}
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-2 sm:pb-0">
+        <div className="mt-8 sm:mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-2 sm:pb-0 w-full sm:w-auto">
             {SLIDESHOW_ACTIVITIES.map((act, index) => (
               <button
                 key={act.id}
                 onClick={() => setCurrentSlide(index)}
-                className={`text-xs px-3 py-1.5 rounded-lg transition-all text-left whitespace-nowrap ${
+                className={`text-xs sm:text-sm px-3.5 py-2 rounded-lg transition-all text-left whitespace-nowrap min-h-[40px] flex items-center ${
                   currentSlide === index
                     ? 'bg-white text-slate-950 font-bold shadow-xs'
                     : 'text-slate-400 hover:text-white hover:bg-white/5 font-medium'
@@ -217,17 +215,17 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handlePrev}
-              className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors"
+              className="p-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
-              className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors"
+              className="p-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Next slide"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -235,4 +233,3 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
     </div>
   );
 }
-

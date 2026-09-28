@@ -52,56 +52,55 @@ export default function PresenceSection({ setActiveTab }: PresenceSectionProps) 
 
   // Centers in selected region
   const regionCenters = CENTERS_DATA.filter(c => c.region === selectedRegion);
-  const regionZimmedars = ZIMMEDAR_DATA.filter(z => z.region === selectedRegion);
 
   return (
-    <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+    <section className="py-12 sm:py-20 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-12">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-2">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-emerald-700 mb-2">
               <Globe2 className="w-4 h-4" />
               <span>Worldwide Footprint</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
               Our Global Presence Across 80+ Countries
             </h2>
-            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+            <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
               From historic European universities to major North American campuses and our central headquarters in Pakistan, Dawateislami youth initiatives connect brothers wherever their academic journeys lead.
             </p>
           </div>
 
-          {/* Quick Metrics Bar - Tabular numerals without static pill clutter */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-            <div>
-              <div className="text-xl font-bold text-slate-900 font-display tabular-nums">80+</div>
-              <div className="text-[11px] text-slate-500">Countries Active</div>
+          {/* Quick Metrics Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+            <div className="p-1">
+              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tabular-nums">80+</div>
+              <div className="text-xs sm:text-sm text-slate-600 font-medium">Countries Active</div>
             </div>
-            <div>
-              <div className="text-xl font-bold text-emerald-700 font-display tabular-nums">350+</div>
-              <div className="text-[11px] text-slate-500">Global Centers</div>
+            <div className="p-1">
+              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-display tabular-nums">350+</div>
+              <div className="text-xs sm:text-sm text-slate-600 font-medium">Global Centers</div>
             </div>
-            <div>
-              <div className="text-xl font-bold text-slate-900 font-display tabular-nums">65+</div>
-              <div className="text-[11px] text-slate-500">Campuses Partnered</div>
+            <div className="p-1">
+              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tabular-nums">65+</div>
+              <div className="text-xs sm:text-sm text-slate-600 font-medium">Campuses Active</div>
             </div>
-            <div>
-              <div className="text-xl font-bold text-indigo-700 font-display tabular-nums">12,000+</div>
-              <div className="text-[11px] text-slate-500">Youth Engaged</div>
+            <div className="p-1">
+              <div className="text-2xl sm:text-3xl font-extrabold text-indigo-700 font-display tabular-nums">12,000+</div>
+              <div className="text-xs sm:text-sm text-slate-600 font-medium">Youth Engaged</div>
             </div>
           </div>
         </div>
 
-        {/* Region Selector Tabs */}
+        {/* Region Selector Tabs - Easily scrollable */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-slate-200 mb-8">
           {regions.map((region) => (
             <button
               key={region.name}
               onClick={() => setSelectedRegion(region.name)}
-              className={`px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
+              className={`px-4 py-2.5 text-sm sm:text-xs font-semibold rounded-xl transition-colors whitespace-nowrap min-h-[44px] flex items-center ${
                 selectedRegion === region.name
                   ? 'bg-slate-900 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-100 bg-slate-50'
               }`}
             >
               {region.name}
@@ -109,137 +108,86 @@ export default function PresenceSection({ setActiveTab }: PresenceSectionProps) 
           ))}
         </div>
 
-        {/* Selected Region Showcase Box */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left: Region Summary & Highlights */}
-          <div className="lg:col-span-5 space-y-5">
-            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
-              <div>
-                <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider block mb-1">
-                  Regional Focus
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 font-display">
-                  {currentRegionData.name} Division
-                </h3>
-                <p className="text-xs text-emerald-800 font-medium mt-1">
-                  {currentRegionData.highlight}
-                </p>
-              </div>
-
-              <div className="space-y-2.5 pt-2 border-t border-slate-200 text-xs">
-                <div>
-                  <span className="text-slate-500 block mb-0.5">Active Countries:</span>
-                  <span className="text-slate-800 font-medium">{currentRegionData.countries}</span>
-                </div>
-
-                <div>
-                  <span className="text-slate-500 block mb-0.5">Partnered Universities & Colleges:</span>
-                  <span className="text-slate-800 font-medium">{currentRegionData.universities}</span>
-                </div>
-
-                <div>
-                  <span className="text-slate-500 block mb-0.5">Regional Youth Secretariat:</span>
-                  <span className="text-slate-800 font-medium">{currentRegionData.leadHub}</span>
-                </div>
-              </div>
-
-              {/* Zimmedar in this region */}
-              {regionZimmedars.length > 0 && (
-                <div className="pt-3 border-t border-slate-200">
-                  <span className="text-xs text-slate-500 block mb-1">Lead Regional Zimmedar:</span>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-slate-900">{regionZimmedars[0].name}</span>
-                    <button
-                      onClick={() => setActiveTab('database')}
-                      className="text-emerald-700 hover:text-emerald-800 font-semibold"
-                    >
-                      View Team →
-                    </button>
-                  </div>
-                  <span className="text-[11px] text-slate-500 block">{regionZimmedars[0].title}</span>
-                </div>
-              )}
+        {/* Current Region Details & Highlight Box */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start mb-10">
+          <div className="lg:col-span-7 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 space-y-5">
+            <div>
+              <span className="text-xs sm:text-sm font-semibold text-emerald-700 uppercase tracking-wider block mb-1">
+                Regional Focus Area
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display">
+                {currentRegionData.name} Youth Operations
+              </h3>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="space-y-4 text-sm sm:text-base text-slate-700">
+              <div>
+                <strong className="text-slate-900 block text-xs sm:text-sm uppercase tracking-wide mb-1 font-semibold">Key Partner Campuses:</strong>
+                <p className="text-slate-600">{currentRegionData.universities}</p>
+              </div>
+
+              <div>
+                <strong className="text-slate-900 block text-xs sm:text-sm uppercase tracking-wide mb-1 font-semibold">Active Countries:</strong>
+                <p className="text-slate-600">{currentRegionData.countries}</p>
+              </div>
+
+              <div className="pt-2 border-t border-slate-200">
+                <span className="text-xs sm:text-sm font-semibold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 inline-block">
+                  {currentRegionData.highlight}
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-3">
               <button
                 onClick={() => setActiveTab('centers')}
-                className="flex-1 px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+                className="w-full sm:w-auto px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white text-sm sm:text-base font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 min-h-[48px]"
               >
-                <Building2 className="w-3.5 h-3.5" />
-                <span>Browse All Centers Directory</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('database')}
-                className="px-4 py-2.5 border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5"
-              >
-                <Users2 className="w-3.5 h-3.5" />
-                <span>Zimmedar Team</span>
+                <span>View All Centers in {currentRegionData.name}</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          {/* Right: Key Centers in This Region */}
-          <div className="lg:col-span-7">
-            <div className="border border-slate-200 rounded-2xl p-6 bg-white space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="text-base font-bold text-slate-900 font-display">
-                    Prominent Centers & Youth Hubs ({regionCenters.length})
-                  </h4>
-                  <p className="text-xs text-slate-500">
-                    With full address, prayer halls, library and weekly halaqas
-                  </p>
-                </div>
-                <button
-                  onClick={() => setActiveTab('centers')}
-                  className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
+          {/* Featured Centers in Region */}
+          <div className="lg:col-span-5 space-y-4">
+            <h4 className="text-base sm:text-lg font-bold text-slate-900 font-display flex items-center justify-between">
+              <span>Featured Centers in Region</span>
+              <button 
+                onClick={() => setActiveTab('centers')}
+                className="text-xs sm:text-sm font-semibold text-emerald-700 hover:underline"
+              >
+                View all ({regionCenters.length})
+              </button>
+            </h4>
+
+            <div className="space-y-3">
+              {regionCenters.slice(0, 3).map((center) => (
+                <div 
+                  key={center.id}
+                  className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 transition-colors"
                 >
-                  <span>See All</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              <div className="space-y-3">
-                {regionCenters.slice(0, 3).map((center) => (
-                  <div 
-                    key={center.id}
-                    className="p-4 rounded-xl border border-slate-200/90 bg-slate-50/50 hover:bg-white hover:border-emerald-600/30 transition-all text-xs"
-                  >
-                    <div className="flex items-start justify-between gap-2 mb-1.5">
-                      <div>
-                        <h5 className="font-bold text-slate-900 text-sm font-display flex items-center gap-1.5">
-                          <span>{center.name}</span>
-                          {center.isHQ && (
-                            <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded-sm">
-                              Global HQ
-                            </span>
-                          )}
-                        </h5>
-                        <p className="text-slate-500 text-[11px]">{center.city}, {center.country}</p>
-                      </div>
-                      <span className="text-[11px] font-mono text-slate-600">{center.phone}</span>
-                    </div>
-
-                    <div className="flex items-start gap-1.5 text-slate-600 mb-2">
-                      <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{center.address}</span>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200">
-                      {center.facilities.slice(0, 3).map((f, i) => (
-                        <span key={i} className="text-[10px] text-slate-600 bg-white border border-slate-200 px-2 py-0.5 rounded-sm">
-                          {f}
-                        </span>
-                      ))}
-                      {center.facilities.length > 3 && (
-                        <span className="text-[10px] text-slate-500">+{center.facilities.length - 3} more</span>
-                      )}
-                    </div>
+                  <div className="flex items-center justify-between text-xs sm:text-sm text-slate-500 mb-1">
+                    <span className="font-semibold text-emerald-800">{center.country}</span>
+                    <span className="font-mono text-xs">{center.city}</span>
                   </div>
-                ))}
-              </div>
+                  <h5 className="text-base font-bold text-slate-900 mb-1 leading-snug">
+                    {center.name}
+                  </h5>
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-1 mb-2">
+                    {center.address}
+                  </p>
+                  <a
+                    href={center.directionsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(center.name + ', ' + center.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-semibold text-emerald-700 hover:underline inline-flex items-center gap-1 py-1"
+                  >
+                    <span>Get Directions</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </div>

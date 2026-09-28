@@ -1,0 +1,6 @@
+{
+  "name": "mydeen.net - Muslim Youth & Student Hub",
+  "description": "Official youth, university, courses, and global centers portal for Dawateislami youth initiatives worldwide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

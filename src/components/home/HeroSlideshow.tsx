@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { SLIDESHOW_ACTIVITIES } from '../../data/mockData';
-import { ChevronLeft, ChevronRight, Play, Pause, ArrowRight, MapPin, Users, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, ArrowRight, MapPin, Users, Sparkles, Compass, CheckCircle2 } from 'lucide-react';
 import { NavTab } from '../layout/Navbar';
 import SlideMockupImage from './SlideMockupImage';
 
 interface HeroSlideshowProps {
   setActiveTab: (tab: NavTab) => void;
-  onOpenAmbassadorModal: () => void;
-  onOpenTravelModal: () => void;
+  onOpenGetInvolved: () => void;
 }
 
-export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onOpenTravelModal }: HeroSlideshowProps) {
+export default function HeroSlideshow({ setActiveTab, onOpenGetInvolved }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
@@ -34,96 +33,57 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
     setCurrentSlide((prev) => (prev - 1 + total) % total);
   };
 
-  // Color theme gradients for aesthetic visual backdrops
-  const themeGradients = {
-    emerald: 'from-emerald-950 via-slate-900 to-emerald-900',
-    indigo: 'from-indigo-950 via-slate-900 to-slate-950',
-    cyan: 'from-teal-950 via-slate-900 to-cyan-950',
-    amber: 'from-amber-950/90 via-slate-900 to-stone-900',
-    purple: 'from-purple-950 via-slate-900 to-indigo-950'
-  };
-
-  const accentColors = {
-    emerald: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
-    indigo: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30',
-    cyan: 'text-teal-400 bg-teal-500/10 border-teal-500/30',
-    amber: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-    purple: 'text-purple-400 bg-purple-500/10 border-purple-500/30'
-  };
-
   return (
-    <div className="relative bg-slate-950 text-white overflow-hidden border-b border-slate-800">
-      {/* Dynamic Background with SVG geometric Islamic arabesque motifs */}
-      <div 
-        className={`absolute inset-0 bg-gradient-to-r ${themeGradients[slide.imageTheme]} transition-colors duration-1000 opacity-95`}
-      />
-      
-      {/* Decorative architectural grid lines */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <div className="relative bg-slate-950 text-white overflow-hidden">
+      {/* Background Glows & Modern Ambient Mesh */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20">
-        {/* Top Kicker - Anti-slop clean typography */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold tracking-wide text-slate-300">
-            <span className="text-emerald-400 font-bold">Dawateislami Youth Initiative</span>
-            <span className="text-slate-500">·</span>
-            <span>Higher Education & Campus Department</span>
-          </div>
-
-          {/* Slide counter & pause control */}
-          <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-400 ml-auto">
-            <span>0{currentSlide + 1}</span>
-            <span>/</span>
-            <span>0{total}</span>
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className="p-1.5 rounded-md hover:bg-white/10 text-slate-300 transition-colors ml-1 min-w-[36px] min-h-[36px] flex items-center justify-center"
-              aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-            >
-              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            </button>
-          </div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-16 sm:pb-24">
+        
+        {/* Top Floating Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md shadow-xs animate-in fade-in duration-300">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          <span>Official Youth & Universities Wing of Dawateislami</span>
         </div>
 
-        {/* Hero Main Grid */}
+        {/* Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Descriptive Hero Copy */}
-          <div className="lg:col-span-6 space-y-4 sm:space-y-6">
-            <div className="inline-block">
-              <span className={`text-xs sm:text-sm font-semibold px-3 py-1 rounded-md border ${accentColors[slide.imageTheme]}`}>
-                {slide.category}
-              </span>
-            </div>
-
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-display leading-[1.2] text-balance">
-              {slide.title}
+          
+          {/* Left Hero Content */}
+          <div className="lg:col-span-6 space-y-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white font-display leading-[1.1] text-balance">
+              Where True Faith Meets Modern Student Life.
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl text-emerald-300/90 font-medium">
-              {slide.tagline}
+            <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed text-balance">
+              Empowering Muslim students across 80+ countries with genuine campus brotherhood, certified courses, and spiritual resilience.
             </p>
 
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
-              {slide.description}
-            </p>
-
-            {/* Slide Metadata Stats */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 py-3 text-xs sm:text-sm text-slate-300 border-y border-white/10">
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold text-white">{slide.stats}</span>
+            {/* Quick Modern Metric Highlights */}
+            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-medium text-slate-300 pt-1">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>65+ Partner Universities</span>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>{slide.location}</span>
+              <span className="text-slate-700">·</span>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>350+ Global Centers</span>
+              </div>
+              <span className="text-slate-700">·</span>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>100% Free Tuition</span>
               </div>
             </div>
 
-            {/* CTAs with generous mobile touch targets */}
-            <div className="pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
+            {/* CTAs */}
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <button
                 onClick={() => setActiveTab('university')}
-                className="w-full sm:w-auto px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm sm:text-base font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 min-h-[48px]"
+                className="px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm sm:text-base rounded-2xl transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 min-h-[48px]"
               >
                 <span>Explore Campus Wing</span>
                 <ArrowRight className="w-4 h-4" />
@@ -131,104 +91,105 @@ export default function HeroSlideshow({ setActiveTab, onOpenAmbassadorModal, onO
 
               <button
                 onClick={() => setActiveTab('courses')}
-                className="w-full sm:w-auto px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white text-sm sm:text-base font-semibold rounded-xl transition-colors border border-white/15 min-h-[48px] flex items-center justify-center"
+                className="px-6 py-3.5 bg-white/10 hover:bg-white/15 text-white font-semibold text-sm sm:text-base rounded-2xl transition-all border border-white/15 min-h-[48px] flex items-center justify-center"
               >
                 <span>Free Youth Courses</span>
               </button>
 
               <button
-                onClick={() => setActiveTab('centers')}
-                className="w-full sm:w-auto px-4 py-3 bg-transparent hover:bg-white/5 text-slate-300 hover:text-white text-sm sm:text-base font-medium rounded-xl transition-colors min-h-[48px] flex items-center justify-center"
+                onClick={onOpenGetInvolved}
+                className="px-5 py-3.5 bg-transparent hover:bg-white/5 text-emerald-300 hover:text-emerald-200 font-semibold text-sm sm:text-base rounded-2xl transition-all min-h-[48px] flex items-center justify-center gap-1.5"
               >
-                <span>Find Nearest Center</span>
+                <Sparkles className="w-4 h-4" />
+                <span>Get Involved</span>
               </button>
             </div>
           </div>
 
-          {/* Right Column: Visual Activity Feature Card with High-Fidelity Mockup Image */}
+          {/* Right Hero Visual Showcase (Sleek, modern card) */}
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md p-4 sm:p-6 overflow-hidden shadow-2xl space-y-4">
-              <div className="flex items-center justify-between text-xs sm:text-sm text-slate-300 border-b border-white/10 pb-3">
+            <div className="relative rounded-3xl bg-slate-900/80 border border-slate-800 p-5 sm:p-6 shadow-2xl backdrop-blur-xl">
+              
+              {/* Header inside card */}
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
                 <div className="flex items-center gap-2">
-                  <ImageIcon className="w-4 h-4 text-emerald-400" />
-                  <span className="font-semibold text-white">Visual Activity Mockup</span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono">
+                    {slide.category}
+                  </span>
                 </div>
-                <span className="text-emerald-400 font-mono text-xs bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
-                  {slide.category}
-                </span>
+                <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                  <span>0{currentSlide + 1} / 0{total}</span>
+                  <button
+                    onClick={() => setIsPlaying(!isPlaying)}
+                    className="p-1 rounded-md hover:bg-white/10 text-slate-300 transition-colors"
+                    aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
+                  >
+                    {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
               </div>
 
-              {/* High-Fidelity Mockup Image Slot */}
-              <div className="aspect-[16/10] w-full rounded-xl overflow-hidden border border-white/15 shadow-xl relative bg-slate-900">
+              {/* Graphic visual mockup */}
+              <div className="aspect-[16/10] w-full rounded-2xl overflow-hidden border border-slate-700/60 shadow-inner relative bg-slate-950 mb-4">
                 <SlideMockupImage slideId={slide.id} theme={slide.imageTheme} />
               </div>
 
-              {/* Mockup Caption & Location Banner */}
-              <div className="flex flex-wrap items-center justify-between text-xs sm:text-sm text-slate-300 pt-1 gap-2">
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>{slide.location}</span>
+              {/* Slide title & description */}
+              <div className="space-y-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white font-display">
+                  {slide.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-2">
+                  {slide.description}
+                </p>
+                <div className="flex items-center justify-between text-xs text-emerald-300/90 pt-2 border-t border-slate-800/80">
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>{slide.location}</span>
+                  </div>
+                  <span className="font-semibold text-white">{slide.stats}</span>
                 </div>
-                <span className="text-emerald-400 font-semibold">{slide.stats}</span>
               </div>
 
-              {/* Quick actions box with comfortable touch targets */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                <button
-                  onClick={onOpenAmbassadorModal}
-                  className="p-3 rounded-xl bg-emerald-900/30 hover:bg-emerald-900/50 border border-emerald-500/30 text-left transition-colors min-h-[52px]"
-                >
-                  <span className="block font-semibold text-emerald-300 text-xs sm:text-sm">Ambassador Form</span>
-                  <span className="text-xs text-slate-300">Represent your campus</span>
-                </button>
+              {/* Slide controls */}
+              <div className="flex items-center justify-between pt-4 mt-2 border-t border-slate-800/80">
+                <div className="flex items-center gap-1.5">
+                  {SLIDESHOW_ACTIVITIES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`h-2 rounded-full transition-all ${
+                        currentSlide === idx ? 'w-6 bg-emerald-400' : 'w-2 bg-slate-700 hover:bg-slate-500'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
 
-                <button
-                  onClick={onOpenTravelModal}
-                  className="p-3 rounded-xl bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/30 text-left transition-colors min-h-[52px]"
-                >
-                  <span className="block font-semibold text-purple-300 text-xs sm:text-sm">Travel Connect</span>
-                  <span className="text-xs text-slate-300">Overseas student buddy</span>
-                </button>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={handlePrev}
+                    className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 transition-colors"
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 transition-colors"
+                    aria-label="Next slide"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
+
             </div>
           </div>
+
         </div>
 
-        {/* Bottom Slide Navigation Bar */}
-        <div className="mt-8 sm:mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-2 sm:pb-0 w-full sm:w-auto">
-            {SLIDESHOW_ACTIVITIES.map((act, index) => (
-              <button
-                key={act.id}
-                onClick={() => setCurrentSlide(index)}
-                className={`text-xs sm:text-sm px-3.5 py-2 rounded-lg transition-all text-left whitespace-nowrap min-h-[40px] flex items-center ${
-                  currentSlide === index
-                    ? 'bg-white text-slate-950 font-bold shadow-xs'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5 font-medium'
-                }`}
-              >
-                <span>{index + 1}. {act.title.split(' ')[0]} {act.title.split(' ')[1]}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={handlePrev}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

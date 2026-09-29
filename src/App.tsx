@@ -19,28 +19,30 @@ import EventsPage from './components/pages/EventsPage';
 import TravelAbroadPage from './components/pages/TravelAbroadPage';
 
 // Modals
+import GetInvolvedModal from './components/modals/GetInvolvedModal';
 import AmbassadorModal from './components/modals/AmbassadorModal';
 import TravelAbroadModal from './components/modals/TravelAbroadModal';
 import AskQuestionModal from './components/modals/AskQuestionModal';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<NavTab>('overview');
+  const [isGetInvolvedOpen, setIsGetInvolvedOpen] = useState(false);
   const [isAmbassadorModalOpen, setIsAmbassadorModalOpen] = useState(false);
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const [isAskModalOpen, setIsAskModalOpen] = useState(false);
 
+  const handleOpenGetInvolved = () => setIsGetInvolvedOpen(true);
   const handleOpenAmbassador = () => setIsAmbassadorModalOpen(true);
   const handleOpenTravel = () => setIsTravelModalOpen(true);
   const handleOpenAsk = () => setIsAskModalOpen(true);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 selection:bg-emerald-600 selection:text-white">
-      {/* Top Bar Contract Navigation */}
+      {/* Top Streamlined Navigation */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        onOpenAmbassadorModal={handleOpenAmbassador}
-        onOpenTravelModal={handleOpenTravel}
+        onOpenGetInvolved={handleOpenGetInvolved}
       />
 
       {/* Main Content Area */}
@@ -49,13 +51,12 @@ export default function App() {
           <>
             <HeroSlideshow
               setActiveTab={setActiveTab}
-              onOpenAmbassadorModal={handleOpenAmbassador}
-              onOpenTravelModal={handleOpenTravel}
+              onOpenGetInvolved={handleOpenGetInvolved}
             />
 
             <DepartmentOverview
               setActiveTab={setActiveTab}
-              onOpenAmbassadorModal={handleOpenAmbassador}
+              onOpenGetInvolved={handleOpenGetInvolved}
             />
 
             <PresenceSection
@@ -110,7 +111,15 @@ export default function App() {
         onOpenTravelModal={handleOpenTravel}
       />
 
-      {/* Global Interactive Modals */}
+      {/* Modals */}
+      <GetInvolvedModal
+        isOpen={isGetInvolvedOpen}
+        onClose={() => setIsGetInvolvedOpen(false)}
+        onSelectAmbassador={handleOpenAmbassador}
+        onSelectTravel={handleOpenTravel}
+        onSelectAsk={handleOpenAsk}
+      />
+
       <AmbassadorModal
         isOpen={isAmbassadorModalOpen}
         onClose={() => setIsAmbassadorModalOpen(false)}

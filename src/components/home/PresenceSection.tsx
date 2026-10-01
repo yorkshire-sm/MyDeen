@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Globe2, MapPin, Building2, ArrowRight } from 'lucide-react';
 import { NavTab } from '../layout/Navbar';
 import { CENTERS_DATA } from '../../data/mockData';
+import { Center } from '../../types';
 
 interface PresenceSectionProps {
   setActiveTab: (tab: NavTab) => void;
@@ -44,7 +45,54 @@ export default function PresenceSection({ setActiveTab }: PresenceSectionProps) 
   ];
 
   const currentRegion = regions.find(r => r.name === selectedRegion) || regions[0];
-  const sampleCenters = CENTERS_DATA.filter(c => c.region === selectedRegion).slice(0, 3);
+  const allRegionCenters = CENTERS_DATA.filter(c => c.region === selectedRegion);
+
+  // Curate diverse featured centers across Europe and other continents
+  const getFeaturedCenters = (regionName: string): Center[] => {
+    const regionCenters = CENTERS_DATA.filter(c => c.region === regionName);
+
+    if (regionName === 'UK & Europe') {
+      // Ensure diverse representation across Continental Europe as well as UK
+      const ukCenter = regionCenters.find(c => c.country === 'United Kingdom');
+      const germanyCenter = regionCenters.find(c => c.country === 'Germany');
+      const italyCenter = regionCenters.find(c => c.country === 'Italy');
+      const spainCenter = regionCenters.find(c => c.country === 'Spain');
+      const netherlandsCenter = regionCenters.find(c => c.country === 'Netherlands');
+
+      const europeanList = [
+        ukCenter,
+        germanyCenter,
+        italyCenter,
+        spainCenter,
+        netherlandsCenter
+      ].filter((item): item is Center => Boolean(item));
+
+      return europeanList.slice(0, 4);
+    }
+
+    // For other regions, pick centers across distinct countries/cities
+    const countries = Array.from(new Set(regionCenters.map(c => c.country)));
+    const diverse: Center[] = [];
+
+    countries.forEach(country => {
+      const found = regionCenters.find(c => c.country === country);
+      if (found && !diverse.some(d => d.id === found.id)) {
+        diverse.push(found);
+      }
+    });
+
+    if (diverse.length < 4) {
+      regionCenters.forEach(c => {
+        if (diverse.length < 4 && !diverse.some(d => d.id === c.id)) {
+          diverse.push(c);
+        }
+      });
+    }
+
+    return diverse.slice(0, 4);
+  };
+
+  const featuredCenters = getFeaturedCenters(selectedRegion);
 
   return (
     <section className="py-16 sm:py-24 bg-slate-50 border-b border-slate-100">
@@ -69,19 +117,19 @@ export default function PresenceSection({ setActiveTab }: PresenceSectionProps) 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 sm:p-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs">
             <div className="p-2">
               <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tabular-nums">80+</div>
-              <div className="text-xs text-slate-500 font-medium">Countries</div>
+              <div className="text-xs text-slate-500 font-medium">Countries Active</div>
             </div>
             <div className="p-2">
-              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 font-display tabular-nums">350+</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#008751] font-display tabular-nums">350+</div>
               <div className="text-xs text-slate-500 font-medium">Global Centers</div>
             </div>
             <div className="p-2">
               <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tabular-nums">65+</div>
-              <div className="text-xs text-slate-500 font-medium">Campuses</div>
+              <div className="text-xs text-slate-500 font-medium">Campuses Active</div>
             </div>
             <div className="p-2">
-              <div className="text-2xl sm:text-3xl font-extrabold text-teal-600 font-display tabular-nums">12K+</div>
-              <div className="text-xs text-slate-500 font-medium">Youth Reached</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#3b36d6] font-display tabular-nums">12,000+</div>
+              <div className="text-xs text-slate-500 font-medium">Youth Engaged</div>
             </div>
           </div>
         </div>
@@ -120,7 +168,7 @@ export default function PresenceSection({ setActiveTab }: PresenceSectionProps) 
 
               <div>
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
-                  Key Campuses & Cities:
+                  Key Campuses &amp; Cities:
                 </span>
                 <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                   {currentRegion.universities}
@@ -147,29 +195,43 @@ export default function PresenceSection({ setActiveTab }: PresenceSectionProps) 
               </div>
             </div>
 
-            {/* Right Sample Centers */}
+            {/* Right Featured Centers */}
             <div className="lg:col-span-6 space-y-3">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">
-                Sample Hubs in {currentRegion.name}:
-              </span>
-              {sampleCenters.map((c) => (
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+                  Featured Centers in Region
+                </span>
+                <button
+                  onClick={() => setActiveTab('centers')}
+                  className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                >
+                  View all ({allRegionCenters.length})
+                </button>
+              </div>
+
+              {featuredCenters.map((c) => (
                 <div 
                   key={c.id}
                   className="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between gap-4 hover:bg-slate-100/70 transition-colors"
                 >
                   <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-0.5 font-medium">
+                      <span className="text-emerald-700 font-semibold">{c.country}</span>
+                      <span className="text-slate-300">·</span>
+                      <span>{c.city}</span>
+                    </div>
                     <h4 className="text-sm sm:text-base font-bold text-slate-900 truncate">
                       {c.name}
                     </h4>
                     <p className="text-xs text-slate-500 truncate">
-                      {c.address}, {c.city}
+                      {c.address}
                     </p>
                   </div>
                   <a
                     href={c.directionsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.name + ' ' + c.address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-2xs"
+                    className="shrink-0 text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-2xs hover:shadow-xs transition-shadow"
                   >
                     Directions
                   </a>

@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 // Home overview sections
 import HeroSlideshow from './components/home/HeroSlideshow';
 import DepartmentOverview from './components/home/DepartmentOverview';
+import EssentialPracticesSection from './components/home/EssentialPracticesSection';
 import PresenceSection from './components/home/PresenceSection';
 import QuranSeerahHub from './components/home/QuranSeerahHub';
 import ShariQuestionsSection from './components/home/ShariQuestionsSection';
@@ -23,6 +24,8 @@ import GetInvolvedModal from './components/modals/GetInvolvedModal';
 import AmbassadorModal from './components/modals/AmbassadorModal';
 import TravelAbroadModal from './components/modals/TravelAbroadModal';
 import AskQuestionModal from './components/modals/AskQuestionModal';
+import PracticeGuideModal from './components/modals/PracticeGuideModal';
+import { PracticeGuide } from './data/practiceGuidesData';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<NavTab>('overview');
@@ -30,11 +33,13 @@ export default function App() {
   const [isAmbassadorModalOpen, setIsAmbassadorModalOpen] = useState(false);
   const [isTravelModalOpen, setIsTravelModalOpen] = useState(false);
   const [isAskModalOpen, setIsAskModalOpen] = useState(false);
+  const [activePracticeGuide, setActivePracticeGuide] = useState<PracticeGuide | null>(null);
 
   const handleOpenGetInvolved = () => setIsGetInvolvedOpen(true);
   const handleOpenAmbassador = () => setIsAmbassadorModalOpen(true);
   const handleOpenTravel = () => setIsTravelModalOpen(true);
   const handleOpenAsk = () => setIsAskModalOpen(true);
+  const handleOpenGuide = (guide: PracticeGuide) => setActivePracticeGuide(guide);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 selection:bg-emerald-600 selection:text-white">
@@ -59,6 +64,11 @@ export default function App() {
               onOpenGetInvolved={handleOpenGetInvolved}
             />
 
+            {/* Essential Islamic Practices Cards (Salah, Wudu, Ghusl) */}
+            <EssentialPracticesSection
+              onOpenGuide={handleOpenGuide}
+            />
+
             <PresenceSection
               setActiveTab={setActiveTab}
             />
@@ -78,7 +88,9 @@ export default function App() {
         )}
 
         {activeTab === 'courses' && (
-          <CoursesPage />
+          <CoursesPage
+            onOpenGuide={handleOpenGuide}
+          />
         )}
 
         {activeTab === 'centers' && (
@@ -133,6 +145,13 @@ export default function App() {
       <AskQuestionModal
         isOpen={isAskModalOpen}
         onClose={() => setIsAskModalOpen(false)}
+      />
+
+      {/* Step-by-Step Worship Guide Modal */}
+      <PracticeGuideModal
+        guide={activePracticeGuide}
+        isOpen={Boolean(activePracticeGuide)}
+        onClose={() => setActivePracticeGuide(null)}
       />
     </div>
   );

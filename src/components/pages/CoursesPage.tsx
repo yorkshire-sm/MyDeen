@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { COURSES_DATA } from '../../data/mockData';
 import { Course } from '../../types';
-import { BookOpen, Clock, Globe2, Sparkles, User, Check, Search, ArrowRight } from 'lucide-react';
+import { BookOpen, Clock, Globe2, Sparkles, User, Check, Search, ArrowRight, ExternalLink } from 'lucide-react';
 import CourseSignUpModal from '../modals/CourseSignUpModal';
+import { PracticeGuide, PRACTICE_GUIDES } from '../../data/practiceGuidesData';
 
-export default function CoursesPage() {
+interface CoursesPageProps {
+  onOpenGuide?: (guide: PracticeGuide) => void;
+}
+
+export default function CoursesPage({ onOpenGuide }: CoursesPageProps) {
   const [selectedTrack, setSelectedTrack] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [signUpCourse, setSignUpCourse] = useState<Course | null>(null);
@@ -33,7 +38,27 @@ export default function CoursesPage() {
             Courses for Youth & Students
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            From short 4-week weekend masterclasses on Salah and halal careers, to our flagship English <strong className="text-slate-800">LYF (Learn Your Faith)</strong> program and Urdu <strong className="text-slate-800">FOA (Faizan-e-Online Academy)</strong> syllabi, find structured knowledge grounded in classical Sunni theology.
+            From short 4-week weekend masterclasses on Salah and halal careers, to our flagship English{' '}
+            <a
+              href="https://lyfonline.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-emerald-800 underline decoration-emerald-500/40 hover:text-emerald-600 inline-flex items-center gap-0.5"
+            >
+              <span>LYF (Learn Your Faith)</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>{' '}
+            program and Urdu{' '}
+            <a
+              href="https://faizanonline.net/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-indigo-800 underline decoration-indigo-500/40 hover:text-indigo-600 inline-flex items-center gap-0.5"
+            >
+              <span>FOA (Faizan-e-Online Academy)</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>{' '}
+            syllabi, find structured knowledge grounded in classical Sunni theology.
           </p>
         </div>
 
@@ -71,19 +96,113 @@ export default function CoursesPage() {
 
         {/* Track descriptions banner */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-            <strong className="text-emerald-800 font-bold block mb-1 text-base">LYF (English Track)</strong>
-            <p className="text-slate-600 leading-relaxed">Specially crafted in clear contemporary English tackling modern doubts, epistemology, mental health, and Tazkiyah.</p>
+          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <strong className="text-emerald-800 font-bold block text-base">LYF (English Track)</strong>
+                <a
+                  href="https://lyfonline.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 flex items-center gap-1 hover:underline"
+                >
+                  <span>lyfonline.com</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+              <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">Specially crafted in clear contemporary English tackling modern doubts, epistemology, mental health, and Tazkiyah.</p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-slate-100">
+              <a
+                href="https://lyfonline.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+              >
+                <span>Visit Official LYF Portal</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
-          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-            <strong className="text-indigo-800 font-bold block mb-1 text-base">FOA (Urdu Track)</strong>
-            <p className="text-slate-600 leading-relaxed font-sans">اردو دان طلباء کے لیے فرض علوم، تجوید و قرأت اور سیرت مصطفیٰ ﷺ کا باقاعدہ و جامع نصاب۔</p>
+
+          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <strong className="text-indigo-800 font-bold block text-base">FOA (Urdu Track)</strong>
+                <a
+                  href="https://faizanonline.net/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-indigo-700 hover:text-indigo-800 flex items-center gap-1 hover:underline"
+                >
+                  <span>faizanonline.net</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+              <p className="text-slate-600 leading-relaxed font-sans text-xs sm:text-sm">اردو دان طلباء کے لیے فرض علوم، تجوید و قرأت اور سیرت مصطفیٰ ﷺ کا باقاعدہ و جامع نصاب۔</p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-slate-100">
+              <a
+                href="https://faizanonline.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 hover:text-indigo-800"
+              >
+                <span>Visit Official FOA Portal</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
           </div>
-          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs">
-            <strong className="text-amber-800 font-bold block mb-1 text-base">Short Masterclasses</strong>
-            <p className="text-slate-600 leading-relaxed">High-yield 3-6 week modules on student finance, workplace ethics, and practical prayer rulings.</p>
+
+          <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col justify-between">
+            <div>
+              <strong className="text-amber-800 font-bold block mb-1 text-base">Short Masterclasses</strong>
+              <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">High-yield 3-6 week modules on student finance, workplace ethics, and practical prayer rulings.</p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-slate-100">
+              <span className="text-xs text-slate-500 font-medium">Delivered directly on campus & online</span>
+            </div>
           </div>
         </div>
+
+        {/* Quick Worship Tutorials Banner */}
+        {onOpenGuide && (
+          <div className="bg-emerald-900 text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-md">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-800 text-emerald-200 text-xs font-semibold mb-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Foundational Worship Tutorials</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
+                Step-by-Step Practical Worship Guides
+              </h3>
+              <p className="text-xs sm:text-sm text-emerald-100 max-w-xl mt-1">
+                Essential step-by-step instructions on performing Salah, Wudu, and Ghusl for students and new Muslims.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 shrink-0">
+              <button
+                onClick={() => onOpenGuide(PRACTICE_GUIDES.salah)}
+                className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold rounded-xl transition-all flex items-center gap-1.5 border border-emerald-500/40"
+              >
+                <span>🕌 Prayer Guide</span>
+              </button>
+              <button
+                onClick={() => onOpenGuide(PRACTICE_GUIDES.wudu)}
+                className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold rounded-xl transition-all flex items-center gap-1.5 border border-emerald-500/40"
+              >
+                <span>💧 Wudu Guide</span>
+              </button>
+              <button
+                onClick={() => onOpenGuide(PRACTICE_GUIDES.ghusl)}
+                className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs sm:text-sm font-bold rounded-xl transition-all flex items-center gap-1.5 border border-emerald-500/40"
+              >
+                <span>🚿 Ghusl Guide</span>
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Course Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

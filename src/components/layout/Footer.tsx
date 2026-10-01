@@ -181,6 +181,17 @@ export default function Footer({ setActiveTab, onOpenAmbassadorModal, onOpenTrav
               </li>
               <li>
                 <a
+                  href="https://www.fatwaqa.com/en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5 py-1 min-h-[36px]"
+                >
+                  <span>FatwaQA Portal (fatwaqa.com)</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://fgrf.org"
                   target="_blank"
                   rel="noopener noreferrer"

@@ -152,6 +152,7 @@ export default function App() {
         guide={activePracticeGuide}
         isOpen={Boolean(activePracticeGuide)}
         onClose={() => setActivePracticeGuide(null)}
+        onSelectGuide={(g) => setActivePracticeGuide(g)}
       />
     </div>
   );

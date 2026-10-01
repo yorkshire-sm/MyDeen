@@ -9,11 +9,12 @@ export interface GuideStep {
   tip?: string;
   warning?: string;
   note?: string;
+  rulingType?: 'Fard (Obligatory)' | 'Sunnah' | 'Mustahab' | 'Wajib';
   extraInfo?: {
     title: string;
     items: string[];
   };
-  videoUrl?: string;
+  videoClipUrl?: string;
   hasPrayerTable?: boolean;
 }
 
@@ -61,6 +62,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 1,
         title: 'Niyyah (Intention) & Takbir',
         illustrationIcon: '🤲',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/NQN2ZOk8/start-1.mp4',
         description: 'Stand facing the Qiblah with feet a few inches apart. Form the intention in your heart for the specific prayer you are about to perform.',
         arabic: 'اللَّهُ أَكْبَر',
         transliteration: 'Allahu Akbar',
@@ -71,6 +74,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 2,
         title: 'Qiyam (Standing Position) & Thana',
         illustrationIcon: '🧍',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/qcMQtX2X/qiyaam-1.mp4',
         description: 'Fold your hands below the navel (right hand grasping left wrist for men; hands on chest for women). Keep your gaze focused on the place of prostration (Sajdah).',
         arabic: 'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ',
         transliteration: 'Subhanak-Allahumma wa bihamdika wa tabarakasmuka wa ta\'ala jadduka wa la ilaha ghayruk.',
@@ -81,6 +86,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 3,
         title: 'Recite Surah Al-Fatiha',
         illustrationIcon: '📖',
+        rulingType: 'Wajib',
+        videoClipUrl: 'https://videos.files.wordpress.com/8sL79IeJ/fatiha-1.mp4',
         description: 'Reciting Surah Al-Fatiha (The Opening Chapter) is obligatory in every Rakat of prayer.',
         arabic: 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۝ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',
         transliteration: 'Alhamdulillahi Rabbil \'alameen. Ar-Rahmanir-Raheem. Maliki Yawmid-Deen. Iyyaka na\'budu wa iyyaka nasta\'een. Ihdinas-siratal-mustaqeem. Siratal-ladhina an\'amta \'alayhim ghayril-maghdubi \'alayhim wa lad-dalleen.',
@@ -91,6 +98,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 4,
         title: 'Recite an Additional Surah',
         illustrationIcon: '📜',
+        rulingType: 'Wajib',
         description: 'In the first two Rakats of prayer, recite an additional Surah or at least three short verses. Here is Surah Al-Ikhlas:',
         arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ',
         transliteration: 'Qul Huwa Allahu Ahad. Allahus-Samad. Lam yalid wa lam yulad. Wa lam yakun lahu kufuwan ahad.',
@@ -101,6 +109,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 5,
         title: 'Ruku (Bowing Down)',
         illustrationIcon: '🙇',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/yo7br8mF/ruku-1.mp4',
         description: 'Utter "Allahu Akbar" and bow down smoothly. Grasp your knees firmly with fingers spread apart. Keep your back straight horizontal, head aligned, and eyes fixed at the feet.',
         arabic: 'سُبْحَانَ رَبِّيَ الْعَظِيمِ',
         transliteration: 'Subhana Rabbiyal \'Azeem',
@@ -111,26 +121,32 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 6,
         title: 'Standing After Ruku (Qawmah)',
         illustrationIcon: '🧍',
+        rulingType: 'Wajib',
+        videoClipUrl: 'https://videos.files.wordpress.com/fSd1HjOq/qiyaamah-1.mp4',
         description: 'Rise from Ruku back to an erect standing posture while uttering the Tasmee\':',
-        arabic: 'سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ',
-        transliteration: 'Sami\' Allahu liman hamidah',
-        translation: 'Allah listens to the one who praises Him.',
-        note: 'Upon standing completely straight, recite Tahmeed: "Rabbana wa lakal hamd" (O our Lord, all praise is for You). Remain still for at least the time it takes to say Subhanallah.'
+        arabic: 'سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ • رَبَّنَا وَلَكَ الْحَمْدُ',
+        transliteration: 'Sami\' Allahu liman hamidah • Rabbana wa lakal hamd',
+        translation: 'Allah listens to the one who praises Him • O our Lord, all praise belongs to You.',
+        note: 'Upon standing completely straight, recite Tahmeed: "Rabbana wa lakal hamd". Remain still for at least the time it takes to say Subhanallah.'
       },
       {
         stepNumber: 7,
         title: 'First Sujood (Prostration)',
         illustrationIcon: '🙇‍♂️',
-        description: 'Say "Allahu Akbar" and descend into prostration: knees touch the ground first, then hands, then nose, then forehead between the hands. Press the forehead and nose firmly.',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/RmVPifIy/sajdah-1.mp4',
+        description: 'Say "Allahu Akbar" and descend into prostration: knees touch the ground first, then hands, then nose, then forehead between the hands. Press the forehead and nose bone firmly against the ground.',
         arabic: 'سُبْحَانَ رَبِّيَ الْأَعْلَى',
         transliteration: 'Subhana Rabbiyal A\'la',
         translation: 'Glory be to my Lord, the Most High.',
-        tip: 'Recite this at least three times. Keep toes pointed towards Qiblah with soles upright. Forearms should be raised off the floor, arms kept away from ribs (unless praying in congregational row).'
+        tip: 'Recite this at least three times. Keep toes pointed towards Qiblah with soles upright. Forearms should be raised off the floor, arms kept away from ribs.'
       },
       {
         stepNumber: 8,
         title: 'Sitting Between Prostrations (Jalsah)',
         illustrationIcon: '🧎',
+        rulingType: 'Wajib',
+        videoClipUrl: 'https://videos.files.wordpress.com/5O0FScqn/jalsah-1.mp4',
         description: 'Say "Allahu Akbar" and rise from Sajdah into an upright seated posture. Lay your left foot flat beneath you and keep the right foot upright with toes facing Qiblah. Hands rest on thighs near the knees.',
         arabic: 'اللَّهُمَّ اغْفِرْلِي',
         transliteration: 'Allahummaghfir li',
@@ -141,6 +157,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 9,
         title: 'Second Sujood (Prostration)',
         illustrationIcon: '🙇‍♂️',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/7WGEg9JZ/2nd-saj-1.mp4',
         description: 'Say "Allahu Akbar" and prostrate again in the exact same manner as the first prostration.',
         arabic: 'سُبْحَانَ رَبِّيَ الْأَعْلَى',
         transliteration: 'Subhana Rabbiyal A\'la',
@@ -151,6 +169,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 10,
         title: 'Rising for the Second Rakat',
         illustrationIcon: '🧍',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/VRZEJ37o/stand-1.mp4',
         description: 'Say "Allahu Akbar" and stand up for the second Rakat using the support of your feet and knees without unnecessarily resting hands on the ground.',
         extraInfo: {
           title: 'Second Rakat Sequence:',
@@ -171,6 +191,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 11,
         title: 'Tashahhud (At-Tahiyyat)',
         illustrationIcon: '🧎',
+        rulingType: 'Wajib',
+        videoClipUrl: 'https://videos.files.wordpress.com/cDeJoKcz/tashahud-1.mp4',
         description: 'Sit in Qa\'dah and recite the At-Tahiyyat supplication. When reaching the Shahadah (testimony of faith), form a circle with thumb and middle finger and raise your index finger at "Ash-hadu an la ilaha" without waving, then lower it at "illallah".',
         arabic: 'التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
         transliteration: 'At-tahiyyatu lillahi was-salawatu wat-tayyibat. As-salamu \'alayka ayyuhan-Nabiyyu wa rahmatullahi wa barakatuh. As-salamu \'alayna wa \'ala \'ibadillahis-salihin. Ash-hadu an la ilaha illallah wa ash-hadu anna Muhammadan \'abduhu wa rasuluh.',
@@ -180,6 +202,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 12,
         title: 'Durood-e-Ibrahim (Salutations)',
         illustrationIcon: '📿',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/cDeJoKcz/tashahud-1.mp4',
         description: 'Following Tashahhud, invoke peace and blessings upon the Beloved Prophet Muhammad ﷺ and Prophet Ibrahim (A.S):',
         arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ',
         transliteration: 'Allahumma salli \'ala Muhammadin wa \'ala ali Muhammad, kama sallayta \'ala Ibrahima wa \'ala ali Ibrahim, innaka Hamidun Majid. Allahumma barik \'ala Muhammadin wa \'ala ali Muhammad, kama barakta \'ala Ibrahima wa \'ala ali Ibrahim, innaka Hamidun Majid.',
@@ -189,6 +213,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 13,
         title: 'Du\'a-e-Masurah (Supplication Before Salam)',
         illustrationIcon: '🤲',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/cDeJoKcz/tashahud-1.mp4',
         description: 'Recite a traditional Quranic or Prophetic supplication before concluding the prayer:',
         arabic: 'اللَّهُمَّ رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ • رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ',
         transliteration: 'Allahumma Rabbi-j\'alni muqimas-salati wa min dhurriyyati, Rabbana wa taqabbal du\'a. Rabbanagh-fir li wa li-walidayya wa lil-mu\'minina yawma yaqumul-hisab.',
@@ -198,6 +224,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 14,
         title: 'Tasleem (Exiting the Prayer)',
         illustrationIcon: '🕊️',
+        rulingType: 'Wajib',
+        videoClipUrl: 'https://videos.files.wordpress.com/4iBUKR6Z/salam-1.mp4',
         description: 'Turn your face gently to the right shoulder and say: "As-salamu \'alaykum wa rahmatullah" (Peace and mercy of Allah be upon you). Then turn your face to the left shoulder and repeat the same.',
         arabic: 'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ',
         transliteration: 'As-salamu \'alaykum wa rahmatullah',
@@ -208,6 +236,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 15,
         title: 'Post-Salah Dhikr & Sunnah Invocations',
         illustrationIcon: '🌟',
+        rulingType: 'Mustahab',
         description: 'Remain seated to engage in heartfelt remembrance of Allah (Dhikr) and personal Dua:',
         extraInfo: {
           title: 'Beloved Sunnah Adhkar:',
@@ -238,6 +267,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 1,
         title: 'Intention (Niyyah)',
         illustrationIcon: '💭',
+        rulingType: 'Sunnah',
         description: 'Make the intention in your heart to perform Wudu for the sake of ritual purification and obedience to Allah Almighty.',
         tip: 'An intention is the firm resolution of your heart. It is recommended to pronounce it verbally: "I intend to perform Wudu to fulfill a commandment of Allah Almighty and attain purity."'
       },
@@ -245,6 +275,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 2,
         title: 'Say Bismillah',
         illustrationIcon: '🕌',
+        rulingType: 'Sunnah',
         description: 'Begin your ablution with the name of Allah Almighty. This is an emphasized Sunnah that brings immense blessing (Barakah) to your purification.',
         arabic: 'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
         transliteration: 'Bismillahir-Rahmanir-Raheem',
@@ -255,6 +286,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 3,
         title: 'Wash Both Hands Up to the Wrists',
         illustrationIcon: '🤲',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/nRCgrnlK/washinghands-1.mp4',
         description: 'Wash both hands up to the wrists three times, making sure water flows between all fingers. Perform Khilal (interlacing the wet fingers of both hands to ensure water reaches all areas).',
         tip: 'Always start with the right hand, then wash the left hand.'
       },
@@ -262,6 +295,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 4,
         title: 'Rinse the Mouth (Madmadah)',
         illustrationIcon: '💧',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/7mfkz08D/rinse_mouth-1.mp4',
         description: 'Take water in your right palm and rinse your mouth three times, ensuring water reaches all corners of the mouth up to the throat. Gargle thoroughly if you are not fasting (Sawm).',
         tip: 'Using Miswak (toothstick) before this step carries tremendous spiritual reward and oral hygiene benefit.'
       },
@@ -269,6 +304,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 5,
         title: 'Clean the Nose (Istinshaq)',
         illustrationIcon: '👃',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/vpDguXfQ/nose.mp4',
         description: 'Sniff water gently into the nostrils three times using the right hand. Clean the nostrils using the left hand, using the little finger to remove any particles.',
         tip: 'Sniff lightly and blow out softly using the left hand.'
       },
@@ -276,6 +313,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 6,
         title: 'Wash the Entire Face',
         illustrationIcon: '✨',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/OE60y8Qn/face.mp4',
         description: 'Pour water over the entire face three times, from the top of the forehead (natural hairline) down to below the chin, and horizontally from earlobe to earlobe without leaving a single dry spot.',
         tip: 'Men with beards should pass wet fingers through the beard (Khilal) to reach the roots.'
       },
@@ -283,6 +322,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 7,
         title: 'Wash Arms Up to and Including Elbows',
         illustrationIcon: '💪',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/3HPuvNFD/arms.mp4',
         description: 'Wash the right forearm from the fingertips up to and past the elbow three times. Then wash the left arm in the exact same manner three times.',
         warning: 'Ensure the elbows are completely wet; leaving even a hair-breadth dry invalidates the Wudu.'
       },
@@ -290,6 +331,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 8,
         title: 'Wipe the Head (Masah)',
         illustrationIcon: '💆',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/1Q8bznLO/wipe.mp4',
         description: 'Moisten your hands with fresh water. Join the tips of the three middle fingers of both hands, place them at the forehead hairline, and wipe backward to the nape of the neck once, then bring the palms back to the front.',
         tip: 'This act is performed only once using clean moisture on the hands.'
       },
@@ -297,6 +340,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 9,
         title: 'Wipe the Ears and Neck',
         illustrationIcon: '👂',
+        rulingType: 'Sunnah',
+        videoClipUrl: 'https://videos.files.wordpress.com/txberJnr/ears.mp4',
         description: 'Using the same moisture on your hands, use your index fingers to wipe the inner contours of the ears, your thumbs to wipe behind the ears, and the back of your fingers to wipe the back of your neck.',
         note: 'Do not wipe the throat (front of the neck), as doing so is not from the Sunnah.'
       },
@@ -304,6 +349,8 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 10,
         title: 'Wash Both Feet Up to the Ankles',
         illustrationIcon: '🦶',
+        rulingType: 'Fard (Obligatory)',
+        videoClipUrl: 'https://videos.files.wordpress.com/z2ewg4Se/feet.mp4',
         description: 'Wash your right foot three times from the toes up to and including the ankle. Perform Khilal between toes using the little finger of the left hand, beginning from the small toe to the big toe. Repeat for the left foot.',
         tip: 'Make sure the heel and Achilles tendon are thoroughly covered with water.'
       },
@@ -311,6 +358,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 11,
         title: 'Completion Dua & Shahadah',
         illustrationIcon: '🎉',
+        rulingType: 'Mustahab',
         description: 'Look towards the sky or stand facing the Qiblah and recite the Kalimah Shahadah and the Sunnah supplication:',
         arabic: 'أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ • اللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ',
         transliteration: 'Ash-hadu an la ilaha illallahu wahdahu la sharika lah, wa ash-hadu anna Muhammadan \'abduhu wa rasuluh. Allahummaj-\'alni minat-tawwabina waj-\'alni minal-mutatahhireen.',
@@ -350,6 +398,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 1,
         title: 'Form the Intention (Niyyah)',
         illustrationIcon: '💭',
+        rulingType: 'Sunnah',
         description: 'Resolve in your heart to perform Ghusl to eliminate ritual impurity and attain purity for the pleasure of Allah Almighty. No verbal utterance is required inside the bathroom.',
         tip: 'Intend in your heart: "I am performing Ghusl to purify myself from ritual impurity in order to pray."'
       },
@@ -357,6 +406,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 2,
         title: 'Say Bismillah Before Entering',
         illustrationIcon: '🕌',
+        rulingType: 'Sunnah',
         description: 'Say Bismillah before entering the shower or bathroom area to invoke divine blessing upon your purification.',
         arabic: 'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
         warning: 'If you are already inside a bathroom that contains a toilet commode, do not pronounce Bismillah with your tongue; intend it in your heart.'
@@ -365,12 +415,14 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 3,
         title: 'Wash Hands Up to Wrists',
         illustrationIcon: '🤲',
+        rulingType: 'Sunnah',
         description: 'Wash both hands up to the wrists three times, rubbing between the fingers (Khilal) to ensure cleanliness before touching water vessels or body parts.'
       },
       {
         stepNumber: 4,
         title: 'Cleanse Private Parts & Impurities',
         illustrationIcon: '🧼',
+        rulingType: 'Sunnah',
         description: 'Using your left hand, wash away any physical filth (Najasah) and cleanse the private parts thoroughly, even if no visible impurity is apparent.',
         note: 'Ensuring personal cleanliness first allows the subsequent water flow to remain completely pure.'
       },
@@ -378,6 +430,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 5,
         title: 'Perform Full Wudu (Ablution)',
         illustrationIcon: '💧',
+        rulingType: 'Sunnah',
         description: 'Perform complete Wudu as done for prayer: rinse mouth and nose deeply (exaggerating if not fasting), wash face, and wash arms up to elbows. You may delay washing feet until the end if water accumulates beneath you.',
         tip: 'Rinsing the entire mouth and sniffing water up into the nasal bone are Fard (obligatory) elements of Ghusl in Hanafi Fiqh.'
       },
@@ -385,6 +438,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 6,
         title: 'Pour Water Over the Right Shoulder',
         illustrationIcon: '🚿',
+        rulingType: 'Sunnah',
         description: 'Pour clean water over your right shoulder and right side of the body three times, rubbing with your hand so the water reaches every contour.',
         tip: 'Beginning with the right side is a blessed Sunnah of Prophet Muhammad ﷺ.'
       },
@@ -392,12 +446,14 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 7,
         title: 'Pour Water Over the Left Shoulder',
         illustrationIcon: '🚿',
+        rulingType: 'Sunnah',
         description: 'Pour clean water over your left shoulder and left side of the body three times, massaging the torso, ribs, and legs with your hand.'
       },
       {
         stepNumber: 8,
         title: 'Pour Water Over the Head',
         illustrationIcon: '💆',
+        rulingType: 'Fard (Obligatory)',
         description: 'Pour water over your entire head three times, massaging the scalp thoroughly so that water reaches the roots of every individual hair.',
         note: 'For women with braided hair: if water can reach the scalp roots without unbraiding, the braids do not need to be unraveled. However, if hair is tight or gelled and roots remain dry, it must be untied.'
       },
@@ -405,6 +461,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 9,
         title: 'Wash the Entire Body Without Omission',
         illustrationIcon: '🌊',
+        rulingType: 'Fard (Obligatory)',
         description: 'Flow water over the entire body from head to toe three times. Rub all areas with your hands to guarantee that not even a single hair-breadth remains dry.',
         extraInfo: {
           title: 'Critical Spots Requiring Attention:',
@@ -422,6 +479,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 10,
         title: 'Step Away and Wash the Feet',
         illustrationIcon: '🦶',
+        rulingType: 'Sunnah',
         description: 'Step slightly away from the wash area to a clean, dry surface and wash both feet thoroughly up to the ankles, right foot first, then left.',
         tip: 'This completes the physical washing routine and ensures no residual soapy runoff stays on the feet.'
       },
@@ -429,6 +487,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 11,
         title: 'Drying & Modesty Guidelines',
         illustrationIcon: '🔒',
+        rulingType: 'Mustahab',
         description: 'Dry your body with a clean towel and dress with dignity. Keep your Satr (private areas) covered and observe modesty at all times.',
         tip: 'Neither speak unnecessary words during Ghusl nor recite holy verses aloud while unclothed.'
       },
@@ -436,6 +495,7 @@ export const PRACTICE_GUIDES: Record<'salah' | 'wudu' | 'ghusl', PracticeGuide> 
         stepNumber: 12,
         title: 'Completion & Shahadah',
         illustrationIcon: '🎉',
+        rulingType: 'Mustahab',
         description: 'Once dressed, recite the Kalimah Shahadah:',
         arabic: 'أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
         transliteration: 'Ash-hadu an la ilaha illallahu wahdahu la sharika lah, wa ash-hadu anna Muhammadan \'abduhu wa rasuluh.',

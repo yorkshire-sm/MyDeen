@@ -6,7 +6,7 @@ export interface FatwaCategory {
   categoryGroup?: 'Worship' | 'Transactions & Finance' | 'Social & Family' | 'Belief & Seerah' | 'Ethics & Lifestyle';
   isYouthCommon?: boolean;
   youthTopics?: string;
-  icon?: string;
+  icon: string;
 }
 
 export const FATWA_CATEGORIES: FatwaCategory[] = [
@@ -131,153 +131,195 @@ export const FATWA_CATEGORIES: FatwaCategory[] = [
     icon: '🤝'
   },
 
-  // Other secondary categories available in expanded view
+  // Secondary categories with emojis and contextual topic descriptions
   {
     id: 'quran-hadith',
     title: 'Quran And Hadith',
     count: 12,
     url: 'https://www.fatwaqa.com/en/fatawa/quran-hadith',
-    categoryGroup: 'Belief & Seerah'
+    categoryGroup: 'Belief & Seerah',
+    youthTopics: 'Recitation rules, touching the Mushaf on phones, authentic Hadith',
+    icon: '📖'
   },
   {
     id: 'ahlus-sunnah-practices',
     title: 'Practices of Ahlus Sunnah',
     count: 12,
     url: 'https://www.fatwaqa.com/en/fatawa/ahlus-sunnah-practices',
-    categoryGroup: 'Belief & Seerah'
+    categoryGroup: 'Belief & Seerah',
+    youthTopics: 'Mawlid, sending peace upon the Prophet ﷺ, authentic traditions',
+    icon: '🕌'
   },
   {
     id: 'funeral',
-    title: 'Funeral Rites',
+    title: 'Funeral Rites & Janazah',
     count: 22,
     url: 'https://www.fatwaqa.com/en/fatawa/funeral',
-    categoryGroup: 'Worship'
+    categoryGroup: 'Worship',
+    youthTopics: 'Janazah prayer method, condolences, visiting graves, Isaal-e-Sawab',
+    icon: '🕊️'
   },
   {
     id: 'zakat-and-ushr',
     title: 'Zakat and Ushr',
     count: 10,
     url: 'https://www.fatwaqa.com/en/fatawa/zakat-and-ushr',
-    categoryGroup: 'Worship'
+    categoryGroup: 'Worship',
+    youthTopics: 'Calculating student savings Zakat, gold jewelry, eligible recipients',
+    icon: '💰'
   },
   {
     id: 'hajj-umrah',
     title: 'Hajj and Umrah',
     count: 24,
     url: 'https://www.fatwaqa.com/en/fatawa/hajj-umrah',
-    categoryGroup: 'Worship'
+    categoryGroup: 'Worship',
+    youthTopics: 'Student Umrah trips, Ihram restrictions, Tawaf & Sa\'ee rules',
+    icon: '🕋'
   },
   {
     id: 'qurbani-and-aqeeqah',
     title: 'Qurbani and Aqeeqah',
     count: 15,
     url: 'https://www.fatwaqa.com/en/fatawa/qurbani-and-aqeeqah',
-    categoryGroup: 'Worship'
+    categoryGroup: 'Worship',
+    youthTopics: 'Sacrifice obligations, shares, overseas charity Qurbani',
+    icon: '🐑'
   },
   {
     id: 'slaughtering-hunting',
-    title: 'Slaughtering and Hunting',
+    title: 'Slaughtering & Halal Meat Standards',
     count: 1,
     url: 'https://www.fatwaqa.com/en/fatawa/slaughtering-hunting',
-    categoryGroup: 'Ethics & Lifestyle'
+    categoryGroup: 'Ethics & Lifestyle',
+    youthTopics: 'Zabiha requirements, mechanical slaughter, imported meat verification',
+    icon: '🔪'
   },
   {
     id: 'oaths-and-vows',
-    title: 'Oaths and Vows',
+    title: 'Oaths, Vows & Expiation',
     count: 7,
     url: 'https://www.fatwaqa.com/en/fatawa/oaths-and-vows',
-    categoryGroup: 'Social & Family'
+    categoryGroup: 'Social & Family',
+    youthTopics: 'Breaking sworn promises, Kaffarah (expiation) rules, valid vows',
+    icon: '✋'
   },
   {
     id: 'divorce',
-    title: 'Talaaq [Divorce]',
+    title: 'Islamic Rulings of Talaaq [Divorce]',
     count: 1,
     url: 'https://www.fatwaqa.com/en/fatawa/divorce',
-    categoryGroup: 'Social & Family'
+    categoryGroup: 'Social & Family',
+    youthTopics: 'Marital dissolution conditions, reconciliation, legal vs Shar\'i divorce',
+    icon: '📜'
   },
   {
     id: 'breastfeeding',
-    title: 'Razaat [Fosterage]',
+    title: 'Razaat [Fosterage & Mahram Rules]',
     count: 5,
     url: 'https://www.fatwaqa.com/en/fatawa/breastfeeding',
-    categoryGroup: 'Social & Family'
+    categoryGroup: 'Social & Family',
+    youthTopics: 'Establishment of foster sibling relationships and Mahram status',
+    icon: '🍼'
   },
   {
     id: 'iddah',
-    title: 'Iddah Rulings',
+    title: 'Islamic Rulings of Iddah',
     count: 1,
     url: 'https://www.fatwaqa.com/en/fatawa/iddah',
-    categoryGroup: 'Social & Family'
+    categoryGroup: 'Social & Family',
+    youthTopics: 'Waiting period obligations, residence rules, mourning guidelines',
+    icon: '⏳'
   },
   {
     id: 'partnership',
-    title: 'Shirkah [Partnership]',
+    title: 'Shirkah [Business Partnerships]',
     count: 3,
     url: 'https://www.fatwaqa.com/en/fatawa/partnership',
-    categoryGroup: 'Transactions & Finance'
+    categoryGroup: 'Transactions & Finance',
+    youthTopics: 'Co-founding startups, sharing profits vs losses, joint business',
+    icon: '👥'
   },
   {
     id: 'mudarabah',
-    title: 'Mudarabah [Silent Partnership]',
+    title: 'Mudarabah [Capital & Effort Partnership]',
     count: 2,
     url: 'https://www.fatwaqa.com/en/fatawa/mudarabah',
-    categoryGroup: 'Transactions & Finance'
+    categoryGroup: 'Transactions & Finance',
+    youthTopics: 'Investing capital in student ventures, entrepreneurship contracts',
+    icon: '🤝'
   },
   {
     id: 'endowments',
-    title: 'Waqf [Endowments]',
+    title: 'Waqf [Endowments & Trusts]',
     count: 7,
     url: 'https://www.fatwaqa.com/en/fatawa/endowments',
-    categoryGroup: 'Transactions & Finance'
+    categoryGroup: 'Transactions & Finance',
+    youthTopics: 'Donating to educational trusts, university prayer hall properties',
+    icon: '🏛️'
   },
   {
     id: 'missing-thing',
     title: 'Lost Property (Al-Luqtah)',
     count: 1,
     url: 'https://www.fatwaqa.com/en/fatawa/missing-thing',
-    categoryGroup: 'Social & Family'
+    categoryGroup: 'Social & Family',
+    youthTopics: 'Finding lost items on campus, reporting belongings, rightful owners',
+    icon: '🔍'
   },
   {
     id: 'inheritance',
-    title: 'Inheritance Rulings',
+    title: 'Inheritance & Estate Distribution',
     count: 6,
     url: 'https://www.fatwaqa.com/en/fatawa/inheritance',
-    categoryGroup: 'Transactions & Finance'
+    categoryGroup: 'Transactions & Finance',
+    youthTopics: 'Islamic wills, division of assets according to the Holy Quran',
+    icon: '⚖️'
   },
   {
     id: 'human-rights-in-islam',
-    title: 'Huqooq-ul-Ibaad [Rights of Beings]',
+    title: 'Huqooq-ul-Ibaad [Rights of Fellow Humans]',
     count: 1,
     url: 'https://www.fatwaqa.com/en/fatawa/human-rights-in-islam',
-    categoryGroup: 'Social & Family'
+    categoryGroup: 'Social & Family',
+    youthTopics: 'Neighbor rights, non-Muslim classmates, avoiding gossip & harm',
+    icon: '🤲'
   },
   {
     id: 'virtues-and-biography',
-    title: 'Excellences and Seerat',
+    title: 'Excellences & Seerat of Prophet Muhammad ﷺ',
     count: 7,
     url: 'https://www.fatwaqa.com/en/fatawa/virtues-and-biography',
-    categoryGroup: 'Belief & Seerah'
+    categoryGroup: 'Belief & Seerah',
+    youthTopics: 'Prophetic character, historical miracles, loving the Beloved Prophet ﷺ',
+    icon: '⭐'
   },
   {
     id: 'economics',
-    title: 'Islamic Economics Fatwas',
+    title: 'Islamic Economics & Banking Fatwas',
     count: 39,
     url: 'https://www.fatwaqa.com/en/fatawa/economics',
-    categoryGroup: 'Transactions & Finance'
+    categoryGroup: 'Transactions & Finance',
+    youthTopics: 'Islamic banking, stock market investing, pension schemes, interest',
+    icon: '📈'
   },
   {
     id: 'sadqa',
-    title: 'Sadqa Rulings',
+    title: 'Sadqa & Voluntary Charity Rulings',
     count: 4,
     url: 'https://www.fatwaqa.com/en/fatawa/sadqa',
-    categoryGroup: 'Worship'
+    categoryGroup: 'Worship',
+    youthTopics: 'Charity in student societies, donating on behalf of deceased, crowdfunding',
+    icon: '🎁'
   },
   {
     id: 'mutafariqat',
-    title: 'Miscellaneous Inquiries',
+    title: 'Miscellaneous Contemporary Inquiries',
     count: 5,
     url: 'https://www.fatwaqa.com/en/fatawa/mutafariqat',
-    categoryGroup: 'Ethics & Lifestyle'
+    categoryGroup: 'Ethics & Lifestyle',
+    youthTopics: 'Digital photography, modern medicine, contemporary lifestyle queries',
+    icon: '📋'
   }
 ];
 
